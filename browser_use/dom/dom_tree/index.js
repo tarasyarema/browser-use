@@ -845,7 +845,7 @@
       }
     }
 
-    const margin = 10;
+    const margin = 5;
     const rect = rects[Math.floor(rects.length / 2)];
 
     // For elements in viewport, check if they're topmost. Do the check in the
