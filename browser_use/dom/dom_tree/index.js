@@ -1300,7 +1300,7 @@
     };
 
     const extraAttributesTagMap = {
-      'input': ['type', 'value', 'placeholder', 'name', 'checked', 'readonly', 'disabled'],
+      'input': ['type', 'placeholder', 'name', 'checked', 'readonly', 'disabled'],
     }
 
     // Get attributes for interactive elements or potential text containers
