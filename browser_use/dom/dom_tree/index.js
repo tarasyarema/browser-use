@@ -845,7 +845,7 @@
       }
     }
 
-    const margin = 5;
+    const margin = 10;
     const rect = rects[Math.floor(rects.length / 2)];
 
     // For elements in viewport, check if they're topmost. Do the check in the
@@ -1328,11 +1328,11 @@
       nodeData.isVisible = isElementVisible(node); // isElementVisible uses offsetWidth/Height, which is fine
       if (nodeData.isVisible) {
         nodeData.isTopElement = isTopElement(node);
-        
+
         // Special handling for ARIA menu containers - check interactivity even if not top element
         const role = node.getAttribute('role');
         const isMenuContainer = role === 'menu' || role === 'menubar' || role === 'listbox';
-        
+
         if (nodeData.isTopElement || isMenuContainer) {
           nodeData.isInteractive = isInteractiveElement(node);
           // Call the dedicated highlighting function
