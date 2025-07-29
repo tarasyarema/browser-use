@@ -1,6 +1,6 @@
 import importlib.resources
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Literal, Optional
 
 from browser_use.llm.messages import ContentPartImageParam, ContentPartTextParam, ImageURL, SystemMessage, UserMessage
 from browser_use.observability import observe_debug
@@ -75,6 +75,8 @@ class SystemPrompt:
 
 
 class AgentMessagePrompt:
+	vision_detail_level: Literal['auto', 'low', 'high']
+
 	def __init__(
 		self,
 		browser_state_summary: 'BrowserStateSummary',
@@ -90,6 +92,7 @@ class AgentMessagePrompt:
 		sensitive_data: str | None = None,
 		available_file_paths: list[str] | None = None,
 		screenshots: list[str] | None = None,
+		vision_detail_level: Literal['auto', 'low', 'high'] = 'auto',
 	):
 		self.browser_state: 'BrowserStateSummary' = browser_state_summary
 		self.file_system: 'FileSystem | None' = file_system
@@ -104,6 +107,7 @@ class AgentMessagePrompt:
 		self.sensitive_data: str | None = sensitive_data
 		self.available_file_paths: list[str] | None = available_file_paths
 		self.screenshots = screenshots or []
+		self.vision_detail_level = vision_detail_level
 		assert self.browser_state
 
 	@observe_debug(ignore_input=True, ignore_output=True, name='_deduplicate_screenshots')
@@ -297,6 +301,7 @@ Available tabs:
 						image_url=ImageURL(
 							url=f'data:image/png;base64,{screenshot}',
 							media_type='image/png',
+							detail=self.vision_detail_level,
 						),
 					)
 				)
