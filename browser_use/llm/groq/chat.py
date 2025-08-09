@@ -32,11 +32,15 @@ GroqVerifiedModels = Literal[
 	'meta-llama/llama-4-scout-17b-16e-instruct',
 	'qwen/qwen3-32b',
 	'moonshotai/kimi-k2-instruct',
+	'openai/gpt-oss-20b',
+	'openai/gpt-oss-120b',
 ]
 
 JsonSchemaModels = [
 	'meta-llama/llama-4-maverick-17b-128e-instruct',
 	'meta-llama/llama-4-scout-17b-16e-instruct',
+	'openai/gpt-oss-20b',
+	'openai/gpt-oss-120b',
 ]
 
 ToolCallingModels = [
